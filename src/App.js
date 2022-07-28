@@ -1,12 +1,30 @@
 import './App.css';
 import CSVReader from 'react-csv-reader'
 import MaterialTable from 'material-table';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 function App() {
   const[data, setData] = useState([])
   const [headings, setHeadings] = useState([])
-  console.log(headings)
+  const [columns, setColumns] = useState([])
+  const [file, setFile] = useState({})
+
+  useEffect(() => {
+    const columnsArray = []
+    if(headings.length){
+      columnsArray.push({title: headings[0], field: headings[0]})
+      headings.slice(1, headings.length-1).forEach(heading => {
+        columnsArray.push({title: heading, field: heading, searchable: false})
+      });
+      setColumns(columnsArray)
+    }
+  }, [headings])
+
+  
+    
+  console.log(columns)
+
+
   return (
     <div className="App">
       <CSVReader
@@ -17,23 +35,14 @@ function App() {
         onFileLoaded={(data, fileInfo) => {
           setData(data)
           setHeadings(Object.keys(data[0]))
+          setFile(fileInfo)
         }}
       />
       
       <div className='table-container'>
         <MaterialTable
-          title="Cases CSV"
-          columns={[
-            { title: 'Vin C', field: 'vin_c' },
-            { title: 'Case Number', field: 'case_number', searchable: false  },
-            { title: 'Status', field: 'status', searchable: false  },
-            { title: 'Reason', field: 'reason', searchable: false  },
-            { title: 'Case Sub Reason C', field: 'case_sub_reason_c', searchable: false  },
-            { title: 'Subject', field: 'subject', searchable: false  },
-            { title: 'Description', field: 'description', searchable: false  },
-            { title: 'Created Date', field: 'created_date', searchable: false  },
-            { title: 'Owner Id', field: 'owner_id', searchable: false  }
-          ]}
+          title={file.name ? file.name : 'CSV'}
+          columns={columns}
           data={data}        
           options={{
             search: true,
