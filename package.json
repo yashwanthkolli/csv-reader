@@ -1,7 +1,7 @@
 {
   "name": "client",
   "version": "0.1.0",
-  "homepage": "https://yashwanthkolli.github.io",
+  "homepage": "https://yashwanthkolli.github.io/csv-reader",
   "private": true,
   "dependencies": {
     "@emotion/react": "^11.1.5",
