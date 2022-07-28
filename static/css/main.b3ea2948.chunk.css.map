@@ -1,0 +1,1 @@
+{"version":3,"sources":["webpack://src/App.css"],"names":[],"mappings":"AAAA,iBACE,SAAU,CACV,WACF,CAEA,WACE,SAAU,CACV,gBACF","file":"main.b3ea2948.chunk.css","sourcesContent":[".table-container{\n  width: 90%;\n  margin: auto;\n}\n\n.container{\n  width: 90%;\n  margin: 50px auto;\n}"]}
